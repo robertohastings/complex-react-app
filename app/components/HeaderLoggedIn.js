@@ -4,10 +4,10 @@ import ExampleContext from '../ExampleContext'
 
 function HeaderLoggedIn(props) {
 
-    const {}
+    const { setLoggedIn } = useContext(ExampleContext)
 
     function handleLogout() {
-        props.setLoggedIn(false)
+        setLoggedIn(false)
         localStorage.removeItem("complexappToken")
         localStorage.removeItem("complexappUsername")
         localStorage.removeItem("complexappAvatar")
