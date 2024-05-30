@@ -1,10 +1,9 @@
 import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
-import ExampleContext from '../ExampleContext'
+import ExampleContext from "../ExampleContext"
 
 function HeaderLoggedIn(props) {
-
-    const {}
+    //const {}
 
     function handleLogout() {
         props.setLoggedIn(false)
