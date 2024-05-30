@@ -16,3 +16,42 @@
     },
 
 -- npm install react-router-dom
+
+
+--Así tengo el editor:
+{
+    "editor.formatOnSave": true,
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/estilos/css"
+        }
+    ],
+    "bracketPairColorizer.depreciation-notice": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.wordWrap": "on",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.minimap.enabled": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.colorTheme": "Default Dark Modern",
+    "remote.SSH.remotePlatform": {
+        "hostregio.net": "linux"
+    },
+    "git.enableSmartCommit": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "files.associations": {
+        "*.js": "javascriptreact"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.semi": false,
+    "prettier.printWidth": 9999,
+    "prettier.tabWidth": 4,
+    "prettier.arrowParens": "avoid",
+    "prettier.trailingComma": "none",
+    "editor.tabSize": 4
+}
