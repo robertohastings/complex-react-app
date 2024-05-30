@@ -1,7 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import ExampleContext from '../ExampleContext'
 
 function HeaderLoggedIn(props) {
+
+    const {}
+
     function handleLogout() {
         props.setLoggedIn(false)
         localStorage.removeItem("complexappToken")
