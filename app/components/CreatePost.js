@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Page from "./Page"
 import Axios from "axios"
 
-function CreatePost() {
+function CreatePost(props) {
     const [title, setTitle] = useState()
     const [body, setBody] = useState()
     const navigate = useNavigate()
@@ -18,6 +18,7 @@ function CreatePost() {
                 token: localStorage.getItem("complexappToken")
             })
             //Redirect to new´post url
+            props.addFlashMessage("Congrats, you succesufilly created a post")
             navigate(`/post/${response.data}`)
 
             console.log("New post was created")
