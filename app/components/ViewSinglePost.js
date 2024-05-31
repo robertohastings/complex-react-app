@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import Page from "./Page"
 
 function ViewSinglePost() {
+    
     return (
         <Page title="Fake Hardcoded Title">
             <div className="d-flex justify-content-between">
