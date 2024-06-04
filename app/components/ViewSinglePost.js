@@ -14,10 +14,11 @@ function ViewSinglePost() {
     const appState = useContext(StateContext)
     const appDispatch = useContext(DispatchContext)
     const { id } = useParams()
+    console.log('id', id)
     const [isLoading, setIsLoading] = useState(true)
     const [post, setPost] = useState()
 
-    useState(() => {
+    useEffect(() => {
         const ourRequest = Axios.CancelToken.source()
         async function fetchPost() {
             try {
@@ -33,7 +34,7 @@ function ViewSinglePost() {
         return () => {
             ourRequest.cancel()
         }
-    }, [])
+    }, [id])
 
     if (!isLoading && !post) {
         return <NotFound/>
