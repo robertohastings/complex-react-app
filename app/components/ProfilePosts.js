@@ -8,7 +8,7 @@ function ProfilePosts() {
     const [isLoading, setIsLoading] = useState(true)
     const [posts, setPosts] = useState([])
 
-    useState(() => {
+    useEffect(() => {
         async function fetchPosts() {
             try {
                 const response = await Axios.get(`/profile/${username}/posts`)
@@ -20,7 +20,7 @@ function ProfilePosts() {
             }
         }
         fetchPosts()
-    }, [])
+    }, [username])
 
     if (isLoading) return <LoadingDotsIcon />
 
