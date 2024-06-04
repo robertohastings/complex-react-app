@@ -77,6 +77,7 @@ function Search() {
         e.preventDefault()
         // navigate({`/post/${post._id}`})
         console.log("hhandlerOnClickere", e.target.value)
+        appDispatch({ type: "closeSearch" })
     }
 
     return (
@@ -106,7 +107,7 @@ function Search() {
                                 const dateFormatted = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
 
                                 return (
-                                    <a onClick={handlerOnClick} id={post._id} to={`/post/${post._id}`} className="list-group-item list-group-item-action">
+                                    <a onClick={handlerOnClick} value={post._id} to={`/post/${post._id}`} className="list-group-item list-group-item-action">
                                         <img className="avatar-tiny" src={post.author.avatar} /> <strong>{post.title}</strong>
                                         <span className="text-muted small">
                                             {" "}
