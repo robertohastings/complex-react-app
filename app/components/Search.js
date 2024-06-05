@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import DispatchContext from "../DispatchContext"
 import { useImmer } from "use-immer"
 import Axios from "axios"
+import Post from "./Post"
 //import { stat } from "@babel/core/lib/gensync-utils/fs"
 
 function Search() {
@@ -105,19 +106,7 @@ function Search() {
                                 <strong>Search Results</strong> ({state.results.length} {state.results.length > 1 ? 'items' : 'item'} found)
                             </div>
                             {state.results.map(post => {
-                                const date = new Date(post.createdDate)
-                                const dateFormatted = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-
-                                return (
-                                    <Link onClick={() => appDispatch({ type: "closeSearch" })} to={`/post/${post._id}`} className="list-group-item list-group-item-action">
-                                        <img className="avatar-tiny" src={post.author.avatar} /> <strong>{post.title}</strong>
-                                        {" "}
-                                        <span className="text-muted small">by
-                                            {" "}
-                                            {post.author.username} on {dateFormatted}{" "}
-                                        </span>
-                                    </Link>
-                                )
+                              return <Post post={post} key={post._id} onClick={() => appDispatch({type: 'closeSearch'})} />
                             })}
                           </div>
                         )}
