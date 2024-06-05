@@ -4,6 +4,7 @@ import { useImmerReducer } from 'use-immer'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import Axios from "axios"
+import Chat from "./components/Chat"
 
 Axios.defaults.baseURL = "http://localhost:8080"
 
@@ -34,7 +35,8 @@ function Main() {
             username: localStorage.getItem('complexappUsername'),
             avatar: localStorage.getItem('complexappAvatar')
         },
-        isSearchOpen: false
+        isSearchOpen: false,
+        isChatOpen: false
     }
     function ourReducer(draft, action) {
         switch (action.type) {
@@ -54,6 +56,11 @@ function Main() {
             case 'closeSearch':
                 draft.isSearchOpen = false
                 return
+            case 'toggleChat':
+                draft.isChatOpen = !draft.isChatOpen
+                return
+            case 'closeChat':
+                draft.isChatOpen = false
         }
     }
     const [state, dispatch] = useImmerReducer(ourReducer, initialState)
@@ -91,6 +98,8 @@ function Main() {
                         <Search/>
                     </CSSTransition>
                     
+                    <Chat/>
+
                     <Footer />
                 </BrowserRouter>
             </DispatchContext.Provider>
