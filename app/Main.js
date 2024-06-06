@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import ReactDOM from "react-dom/client"
-import { useImmerReducer } from 'use-immer'
+import { useImmerReducer } from "use-immer"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import Axios from "axios"
@@ -8,8 +8,8 @@ import Chat from "./components/Chat"
 
 Axios.defaults.baseURL = "http://localhost:8080"
 
-import StateContext from './StateContext'
-import DispatchContext from './DispatchContext'
+import StateContext from "./StateContext"
+import DispatchContext from "./DispatchContext"
 
 //My Components
 import Header from "./components/Header"
@@ -21,46 +21,53 @@ import Terms from "./components/Terms"
 import CreatePost from "./components/CreatePost"
 import ViewSinglePost from "./components/ViewSinglePost"
 import FlashMessages from "./components/FlashMessages"
-import Profile from './components/Profile'
-import EditPost from './components/EditPost'
+import Profile from "./components/Profile"
+import EditPost from "./components/EditPost"
 import NotFound from "./components/NotFound"
 import Search from "./components/Search"
 
 function Main() {
     const initialState = {
         loggedIn: Boolean(localStorage.getItem("complexappToken")),
-        flashMessages : [],
+        flashMessages: [],
         user: {
-            token: localStorage.getItem('complexappToken'),
-            username: localStorage.getItem('complexappUsername'),
-            avatar: localStorage.getItem('complexappAvatar')
+            token: localStorage.getItem("complexappToken"),
+            username: localStorage.getItem("complexappUsername"),
+            avatar: localStorage.getItem("complexappAvatar")
         },
         isSearchOpen: false,
-        isChatOpen: false
+        isChatOpen: false,
+        unreadReadChatCount: 0
     }
     function ourReducer(draft, action) {
         switch (action.type) {
-            case 'login':
+            case "login":
                 draft.loggedIn = true
                 draft.user = action.data
                 return
-            case 'logout':
+            case "logout":
                 draft.loggedIn = false
                 return
-            case 'flashMessage':
+            case "flashMessage":
                 draft.flashMessages.push(action.value)
                 return
-            case 'openSearch':
+            case "openSearch":
                 draft.isSearchOpen = true
                 return
-            case 'closeSearch':
+            case "closeSearch":
                 draft.isSearchOpen = false
                 return
-            case 'toggleChat':
+            case "toggleChat":
                 draft.isChatOpen = !draft.isChatOpen
                 return
-            case 'closeChat':
+            case "closeChat":
                 draft.isChatOpen = false
+            case "incrementUnreadChatCount":
+                draft.unreadReadChatCount++
+                return
+            case "clearUnreadChatCount":
+                draft.unreadReadChatCount = 0
+                return
         }
     }
     const [state, dispatch] = useImmerReducer(ourReducer, initialState)
@@ -91,14 +98,14 @@ function Main() {
                         <Route path="/create-post" element={<CreatePost />} />
                         <Route path="/about-us" element={<About />} />
                         <Route path="/terms" element={<Terms />} />
-                        <Route path="*" element={<NotFound/>}/>
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
 
                     <CSSTransition timeout={330} in={state.isSearchOpen} classNames="search-overlay" unmountOnExit>
-                        <Search/>
+                        <Search />
                     </CSSTransition>
-                    
-                    <Chat/>
+
+                    <Chat />
 
                     <Footer />
                 </BrowserRouter>
